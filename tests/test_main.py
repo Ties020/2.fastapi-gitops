@@ -14,6 +14,20 @@ def test_root():
     assert response.json() == {"message": "Welcome to FastAPI GitOps Starter!"}
 
 
+def test_create_item():
+    payload = {"name": "Test Item", "description": "Test Description"}
+
+    response = client.post("/api/items", params=payload)
+
+    assert response.status_code == 200
+    assert response.json() == {
+        "id": 999,
+        "name": "Test Item",
+        "description": "Test Description",
+        "created": True,
+    }
+
+
 def test_health_check():
     """Test the health check endpoint."""
     response = client.get("/health")
