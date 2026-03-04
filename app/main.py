@@ -18,12 +18,6 @@ async def root():
     return {"message": "Welcome to FastAPI GitOps Starter!"}
 
 
-@app.post("/api/items")
-async def create_item(name: str, description: str):
-    """Create a new item."""
-    return {"id": 999, "name": name, "description": description, "created": True}
-
-
 @app.get("/health")
 async def health_check():
     """Health check endpoint."""
@@ -55,5 +49,11 @@ async def get_item(item_id: int):
     }
 
 
+@app.post("/api/items")
+async def create_item(name: str, description: str):
+    """Create a new item."""
+    return {"id": 999, "name": name, "description": description, "created": True}
+
+
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)  # nosec B104
+    uvicorn.run(app, host="0.0.0.0", port=8000)
